@@ -1,7 +1,6 @@
 package io
 
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
+import io.infrastructure.ride.rideModule
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -18,12 +17,15 @@ import org.koin.logger.slf4jLogger
 fun Application.configureFrameworks() {
     install(Koin) {
         slf4jLogger()
-        modules(module {
-            single<HelloService> {
-                HelloService {
-                    println(environment.log.info("Hello, World!"))
+        modules(
+            rideModule,
+            module {
+                single<HelloService> {
+                    HelloService {
+                        println(environment.log.info("Hello, World!"))
+                    }
                 }
-            }
-        })
+            },
+        )
     }
 }

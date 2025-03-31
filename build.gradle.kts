@@ -2,6 +2,7 @@ val koin_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 val arrow_version: String by project
+val kotest_version: String by project
 
 plugins {
     kotlin("jvm") version "2.1.20"
@@ -39,4 +40,14 @@ dependencies {
     implementation("io.arrow-kt:arrow-core:$arrow_version")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+    // kotest
+    testImplementation("io.kotest:kotest-runner-junit5:$kotest_version")
+    testImplementation("io.kotest:kotest-assertions-core:$kotest_version")
+    testImplementation("io.kotest:kotest-framework-engine:$kotest_version")
+    testImplementation("io.kotest.extensions:kotest-assertions-arrow:1.3.3")
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
